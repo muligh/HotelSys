@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml;
 
 namespace HotelSys
 {
@@ -52,6 +52,10 @@ namespace HotelSys
                           "|4. Cancel Reservation" );
             Console.SetCursorPosition(1,16);
             int num = Convert.ToInt32(Console.ReadLine());
+            if (num == 1)
+            {
+
+            }
              
             switch (num)
             {
@@ -140,4 +144,5 @@ namespace HotelSys
             Console.ReadKey();
         }
     }
+
 }
