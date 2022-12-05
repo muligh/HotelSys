@@ -26,27 +26,28 @@ namespace HotelSys
                 1250, 1300,2000, 650, 3000, 3250, 980, 785, 895, 2050, 840, 790, 1150, 5000,600, 
                 980, 4030, 4300, 5000, 3380, 3390, 4390, 1000, 2000, 2250,2500, 3500, 1500, 1700, 
                 1800, 3800, 2800, 2500, 3250, 4500, 2100, 2200, 2100, 4400, 3900};
+        Start:
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("|-------------------------------------------------------------------|");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|-------------------------------------------------------------------|");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|                                                                   |");
+            Console.WriteLine("|-------------------------------------------------------------------|");
             
-            Console.WriteLine("|-------------------------------------------------------------------|");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|-------------------------------------------------------------------|");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|                                                                   |");
-            Console.WriteLine("|-------------------------------------------------------------------|");
-            Start:
             Console.SetCursorPosition(17, 1);
             Console.Write("MULIG HOTEL RESERVATION");
             Console.SetCursorPosition(1, 5);
@@ -85,10 +86,10 @@ namespace HotelSys
                     Console.SetCursorPosition(1, 6);
                     Console.Write("Enter your Contact Number: ");
                     string contactNum = Console.ReadLine();
-                    Console.SetCursorPosition(1, 8);
+                    Console.SetCursorPosition(1, 7);
                     Console.Write("Enter the number of room to reserve(1-50): ");
                     int roomNum = Convert.ToInt32(Console.ReadLine());
-                    Console.SetCursorPosition(1, 9);
+                    Console.SetCursorPosition(1, 8);
                     Console.Write("Enter number of days to reserve: ");
                     int reserveDays = Convert.ToInt32(Console.ReadLine());
                     int costAmount = roomPrice[roomNum - 1] * reserveDays;
@@ -133,6 +134,12 @@ namespace HotelSys
                         goto Form;
                     }
                     Console.ReadLine();
+                    Console.SetCursorPosition(1, 5);
+                    Proceed:
+                    Console.Write("|Congratulations!\n" +
+                                  "|You have successfully reserved a room.\n" +
+                                  "|Press Enter to print your receipt.");
+                    Console.ReadKey();
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
                     Console.SetCursorPosition(0, 4);
@@ -152,35 +159,31 @@ namespace HotelSys
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|-------------------------------------------------------------------|");
                     Console.SetCursorPosition(1, 5);
-                    Proceed:
-                    Console.Write("Congratulations!\n" +
-                                  "|You have successfully reserved a room.\n" +
-                                  "|Press Enter to go back to Menu.");
+                    Console.WriteLine("Name: " + reserveName + "\n" +
+                                      "|Contact Number: " + contactNum + "\n" +
+                                      "|Room Number: " + roomNum + "\n" +
+                                      "|Days Reserved: " + reserveDays + "\n" +
+                                      "|Room Price: " + roomPrice[roomNum - 1] + "\n" +
+                                      "|Amount Paid: " + costAmount + "\n" +
+                                      "|Amount Given: " + amountPay + "\n");
                     Console.ReadKey();
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
-                        goto Start;
+                    goto Start;
                 case 2:
+                    int f = 0;
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
                     Console.SetCursorPosition(0, 4);
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
+                    foreach (int j in roomPrice)
+                    {
+                        f++;
+                        Console.WriteLine("|Room {0} = {1}\t\t\t\t\t\t\t    |", f, j);
+                    }
                     Console.WriteLine("|-------------------------------------------------------------------|");
-                    goto Start;
-                
+                    Console.ReadKey();
+                    Console.Clear();
+                goto Start;
             }
 
             Console.ReadKey();
