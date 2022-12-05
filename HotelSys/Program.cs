@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -60,6 +61,7 @@ namespace HotelSys
                 case 1:
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
+                    Form:
                     Console.SetCursorPosition(0, 4);
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
@@ -76,21 +78,20 @@ namespace HotelSys
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|-------------------------------------------------------------------|");
+                    
                     Console.SetCursorPosition(1, 5);
                     Console.Write("Enter your name: ");
                     string reserveName = Console.ReadLine();
                     Console.SetCursorPosition(1, 6);
-                    Console.Write("Enter your age: ");
-                    int age = Convert.ToInt32(Console.ReadLine());
-                    Console.SetCursorPosition(1, 7);
                     Console.Write("Enter your Contact Number: ");
                     string contactNum = Console.ReadLine();
                     Console.SetCursorPosition(1, 8);
-                    Console.Write("Enter the number of room to reserve(Room 1-50): ");
+                    Console.Write("Enter the number of room to reserve(1-50): ");
                     int roomNum = Convert.ToInt32(Console.ReadLine());
                     Console.SetCursorPosition(1, 9);
                     Console.Write("Enter number of days to reserve: ");
                     int reserveDays = Convert.ToInt32(Console.ReadLine());
+                    int costAmount = roomPrice[roomNum - 1] * reserveDays;
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
                     Console.SetCursorPosition(0, 4);
@@ -112,8 +113,25 @@ namespace HotelSys
                     Console.SetCursorPosition(1, 5);
                     Console.Write("Hi " + reserveName + "!\n" +
                                   "|You have selected Room " + roomNum + " to reserve for " + reserveDays + ".\n" +
-                                  "|The total cost of your reservation" +
-                                  "|Is this correct?");
+                                  "|The total cost of your reservation is " + costAmount + ".\n" +
+                                  "|Enter the amount to be received for payment: ");
+                    int amountPay = Convert.ToInt32(Console.ReadLine());
+                    Console.SetCursorPosition(1, 9);
+                    Console.Write("Your change is exactly " + (amountPay - costAmount) + ".\n" +
+                                  "|To continue, type 'Proceed'\n" +
+                                  "|To return to form, type 'return'\n" +
+                                  "|");
+                    string confirm = Console.ReadLine();
+                    if (confirm == "Proceed")
+                    {
+                        goto Proceed;
+                    }
+                    else if (confirm == "Return")
+                    {
+                        Console.SetCursorPosition(0, 19);
+                        ClearLine();
+                        goto Form;
+                    }
                     Console.ReadLine();
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
@@ -133,8 +151,15 @@ namespace HotelSys
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|-------------------------------------------------------------------|");
-                    Console.ReadLine();
-                    goto Start;
+                    Console.SetCursorPosition(1, 5);
+                    Proceed:
+                    Console.Write("Congratulations!\n" +
+                                  "|You have successfully reserved a room.\n" +
+                                  "|Press Enter to go back to Menu.");
+                    Console.ReadKey();
+                    Console.SetCursorPosition(0, 19);
+                    ClearLine();
+                        goto Start;
                 case 2:
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
@@ -154,7 +179,7 @@ namespace HotelSys
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|-------------------------------------------------------------------|");
-                    break;
+                    goto Start;
                 
             }
 
