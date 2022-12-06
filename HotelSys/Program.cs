@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Management.Instrumentation;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -22,6 +24,8 @@ namespace HotelSys
         }
         static void Main(string[] args)
         {
+            int num, roomNum, reserveDays;
+            bool isItReal = true;
             int[] roomPrice = new int[50] { 1125, 750, 800, 925, 500, 870, 400, 2210, 850, 940, 
                 1250, 1300,2000, 650, 3000, 3250, 980, 785, 895, 2050, 840, 790, 1150, 5000,600, 
                 980, 4030, 4300, 5000, 3380, 3390, 4390, 1000, 2000, 2250,2500, 3500, 1500, 1700, 
@@ -54,9 +58,19 @@ namespace HotelSys
             Console.Write("Enter The Number Corresponding the Service You Want To Use\n" +
                           "|1. Reserve a Room\n" +
                           "|2. Check Service Prices\n");
+            bebe:
             Console.SetCursorPosition(1,16);
-            int num = Convert.ToInt32(Console.ReadLine());
-
+            try
+            {
+                num = int.Parse(Console.ReadLine());
+            }
+            catch (Exception ps)
+            {
+                Console.SetCursorPosition(1, 9);
+                Console.WriteLine(ps.Message+"Try again.");
+                goto bebe;
+            }
+            
             switch (num)
             {
                 case 1:
@@ -79,19 +93,40 @@ namespace HotelSys
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|-------------------------------------------------------------------|");
-
                     Console.SetCursorPosition(1, 5);
                     Console.Write("Enter your name: ");
                     string reserveName = Console.ReadLine();
                     Console.SetCursorPosition(1, 6);
                     Console.Write("Enter your Contact Number: ");
                     string contactNum = Console.ReadLine();
+                    roomie:
                     Console.SetCursorPosition(1, 7);
                     Console.Write("Enter the number of room to reserve(1-50): ");
-                    int roomNum = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        roomNum = int.Parse(Console.ReadLine());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.SetCursorPosition(1, 8);
+                        Console.WriteLine(ex.Message + " Please try again.");
+                        goto roomie;
+                    }
+                    Console.SetCursorPosition(1, 8);
+                    Console.Write("".PadRight(66));
+                    mama:
                     Console.SetCursorPosition(1, 8);
                     Console.Write("Enter number of days to reserve: ");
-                    int reserveDays = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        reserveDays = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (Exception ma)
+                    {
+                        Console.SetCursorPosition(1, 9);
+                        Console.Write(ma.Message + "Please try again.");
+                        goto mama;
+                    }
                     int costAmount = roomPrice[roomNum - 1] * reserveDays;
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
@@ -120,8 +155,9 @@ namespace HotelSys
                                   "|Enter the amount to be received for payment: ");
                     int amountPay = Convert.ToInt32(Console.ReadLine());
                     Console.SetCursorPosition(1, 9);
-                    Console.Write("Your change is exactly " + (amountPay - costAmount) + ".\n" +
-                                  "|To continue, type 'Proceed'\n" +
+                    Console.Write("Your change is exactly " + (amountPay - costAmount) + ".");
+                Try:
+                    Console.Write("|To continue, type 'Proceed'\n" +
                                   "|To return to form, type 'return'\n" +
                                   "|");
                     string confirm = Console.ReadLine();
@@ -134,6 +170,12 @@ namespace HotelSys
                         Console.SetCursorPosition(0, 19);
                         ClearLine();
                         goto Form;
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(1, 13);
+                        Console.WriteLine("Invalid input. Try again.");
+                        goto Try;
                     }
                 Proceed:
                     Console.Write("|Congratulations!\n" +
@@ -187,29 +229,9 @@ namespace HotelSys
                     Console.Clear();
                     goto Start;
                 default:
-                    Console.SetCursorPosition(0, 19);
-                    ClearLine();
-
-                    Console.SetCursorPosition(0, 4);
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|                                                                   |");
-                    Console.WriteLine("|-------------------------------------------------------------------|");
                     Console.SetCursorPosition(1, 8);
-                    Console.WriteLine("Invalid input. Press Enter to try again.");
-                    Console.ReadKey();
-                    goto Start;
+                    Console.Write("Invalid input. Try again.");
+                    goto bebe;
 
             }
         }
