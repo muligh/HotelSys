@@ -56,13 +56,13 @@ namespace HotelSys
                           "|2. Check Service Prices\n");
             Console.SetCursorPosition(1,16);
             int num = Convert.ToInt32(Console.ReadLine());
-            
+
             switch (num)
             {
                 case 1:
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
-                    Form:
+                Form:
                     Console.SetCursorPosition(0, 4);
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
@@ -79,7 +79,7 @@ namespace HotelSys
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|-------------------------------------------------------------------|");
-                    
+
                     Console.SetCursorPosition(1, 5);
                     Console.Write("Enter your name: ");
                     string reserveName = Console.ReadLine();
@@ -95,6 +95,7 @@ namespace HotelSys
                     int costAmount = roomPrice[roomNum - 1] * reserveDays;
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
+
                     Console.SetCursorPosition(0, 4);
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
@@ -111,6 +112,7 @@ namespace HotelSys
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|-------------------------------------------------------------------|");
+
                     Console.SetCursorPosition(1, 5);
                     Console.Write("Hi " + reserveName + "!\n" +
                                   "|You have selected Room " + roomNum + " to reserve for " + reserveDays + ".\n" +
@@ -133,15 +135,14 @@ namespace HotelSys
                         ClearLine();
                         goto Form;
                     }
-                    Console.ReadLine();
-                    Console.SetCursorPosition(1, 5);
-                    Proceed:
+                Proceed:
                     Console.Write("|Congratulations!\n" +
                                   "|You have successfully reserved a room.\n" +
                                   "|Press Enter to print your receipt.");
                     Console.ReadKey();
                     Console.SetCursorPosition(0, 19);
                     ClearLine();
+
                     Console.SetCursorPosition(0, 4);
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
@@ -158,6 +159,7 @@ namespace HotelSys
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|                                                                   |");
                     Console.WriteLine("|-------------------------------------------------------------------|");
+
                     Console.SetCursorPosition(1, 5);
                     Console.WriteLine("Name: " + reserveName + "\n" +
                                       "|Contact Number: " + contactNum + "\n" +
@@ -183,10 +185,33 @@ namespace HotelSys
                     Console.WriteLine("|-------------------------------------------------------------------|");
                     Console.ReadKey();
                     Console.Clear();
-                goto Start;
-            }
+                    goto Start;
+                default:
+                    Console.SetCursorPosition(0, 19);
+                    ClearLine();
 
-            Console.ReadKey();
+                    Console.SetCursorPosition(0, 4);
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|                                                                   |");
+                    Console.WriteLine("|-------------------------------------------------------------------|");
+                    Console.SetCursorPosition(1, 8);
+                    Console.WriteLine("Invalid input. Press Enter to try again.");
+                    Console.ReadKey();
+                    goto Start;
+
+            }
         }
     }
 
